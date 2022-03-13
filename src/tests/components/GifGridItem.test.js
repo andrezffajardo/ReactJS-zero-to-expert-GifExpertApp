@@ -7,19 +7,37 @@ describe('Pruebas en <GifGridItem />', () => {
 
     const title = 'A Title';
     const url = 'https://localhost/any.jpg'
-
+    const wrapper = shallow( <GifGridItem title={ title } url={ url }/> )
 
     test('Debe mostrar <GifGridItem /> correctamente', () => {
 
-        const wrapper = shallow( <GifGridItem title={ title } url={ url }/> )
         expect( wrapper ).toMatchSnapshot();
     });
 
-    // test('Debe mostrar titulo enviado por props', () => {
-    //
-    //     const title =
-    //
-    // })
+    test('Debe tener un parrafo con el Title', () => {
+
+        const p = wrapper.find('p');
+        expect( p.text().trim() ).toBe( title );
+
+    });
+
+    test('Debe tener la imagen igual al url y alt de los props', () => {
+
+        const img = wrapper.find('img');
+        //console.log(img.prop('src'))
+        expect( img.prop('src') ).toBe( url );
+        expect( img.prop('alt') ).toBe( title );
+
+    });
+
+    test('Debe tener animate__fadeIn', () => {
+
+        const div = wrapper.find('div');
+        const className = div.prop('className');
+        //console.log(div.prop('className'))
+        expect( className.includes('animate__fadeIn') ).toBe( true );
+
+    });
 
 
 
