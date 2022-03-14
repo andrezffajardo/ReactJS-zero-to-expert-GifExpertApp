@@ -9,5 +9,13 @@ describe('Pruebas con getGifs Fetch', () => {
 
         expect( gifs.length ).toBe( 10 );
 
-    })
+    });
+
+    test('Debe traer 0 elementos, cuando no se manda la categoria', async() => {
+
+        const gifs = await getGifs('');
+
+        expect( gifs.length ).toBe( 0 );
+
+    });
 })
