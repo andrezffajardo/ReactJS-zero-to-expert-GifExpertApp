@@ -27,7 +27,12 @@ describe('Pruebas en <GifGrid />', () => {
             id: 'ABC',
             url: 'https://localhost/any.jpg',
             title: 'anything',
-        }]
+        },
+        {
+            id: '123',
+            url: 'https://localhost/any.jpg',
+            title: 'anything',
+        }];
 
         useFetchGifs.mockReturnValue({
             data: gifs,
@@ -36,7 +41,9 @@ describe('Pruebas en <GifGrid />', () => {
 
         const wrapper = shallow( <GifGrid category={ category } /> );
 
-        expect( wrapper ).toMatchSnapshot();
+        //expect( wrapper ).toMatchSnapshot();
+        expect( wrapper.find('p').exists()).toBe(false);
+        expect( wrapper.find('GifGridItem').length ).toBe( gifs.length );
 
     })
 
